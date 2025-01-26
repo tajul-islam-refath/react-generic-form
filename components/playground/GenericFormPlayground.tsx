@@ -72,9 +72,12 @@ const GenericFormPlayground = () => {
           )}
         </GenericForm.ArrayField>
 
-        <Button variant="default" type="submit">
-          Submit
-        </Button>
+        <div>
+          <GenericForm.FormReset<FormTypes> label="Reset" />
+          <Button variant="default" type="submit">
+            Submit
+          </Button>
+        </div>
       </div>
     </GenericForm>
   );

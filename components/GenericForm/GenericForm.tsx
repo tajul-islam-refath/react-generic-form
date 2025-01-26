@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Ref, useImperativeHandle } from "react";
 import TextField from "./fields/TextField";
 import ArrayField from "./fields/ArrayField";
+import FormReset from "./fields/FormReset";
 
 export type GenericFormRef<TFormValues extends FieldValues> = {
   control: Control<TFormValues>;
@@ -76,3 +77,4 @@ GenericForm.displayName = "GenericForm";
 
 GenericForm.TextField = TextField;
 GenericForm.ArrayField = ArrayField;
+GenericForm.FormReset = FormReset;
