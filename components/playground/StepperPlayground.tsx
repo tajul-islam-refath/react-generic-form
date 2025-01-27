@@ -3,8 +3,14 @@ import Stepper from "../Stepper/Stepper";
 
 const StepperPlayground = () => {
   return (
-    <Stepper>
-      <Stepper.Step validate={() => false}>
+    <Stepper
+      onComplete={() => {
+        alert("Completed");
+      }}>
+      <Stepper.Step
+        validate={async () => {
+          return { hasError: false };
+        }}>
         <p>Step 1</p>
       </Stepper.Step>
       <Stepper.Step>

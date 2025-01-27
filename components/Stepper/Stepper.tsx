@@ -1,14 +1,21 @@
 import React, { Children, isValidElement, ReactNode, useState } from "react";
-import { StepperContext } from "./Stepper.context";
+import { StepError, StepperContext } from "./Stepper.context";
 import { Step } from "./Step";
 import { StepperContent } from "./StepperContent";
 
 type StepperProps = {
   children: React.ReactNode;
+  onComplete?: () => void | Promise<void>;
+  completeLabel?: string;
 };
 
-const Stepper = ({ children }: StepperProps) => {
+const Stepper = ({
+  children,
+  onComplete,
+  completeLabel = "Complete",
+}: StepperProps) => {
   const [currentStep, setCurrentStep] = useState<number>(1);
+  const [stepErrors, setStepErrors] = useState<Record<number, StepError>>({});
   const steps = getSteps(children);
 
   return (
@@ -17,10 +24,12 @@ const Stepper = ({ children }: StepperProps) => {
         currentStep,
         totalSteps: steps.length,
         setCurrentStep,
-        stepErrors: {},
-        setStepErrors: () => {},
+        stepErrors,
+        setStepErrors,
       }}>
-      <StepperContent>{children}</StepperContent>
+      <StepperContent onComplete={onComplete} completeLabel={completeLabel}>
+        {children}
+      </StepperContent>
     </StepperContext>
   );
 };

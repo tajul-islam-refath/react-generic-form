@@ -36,7 +36,13 @@ export const useStepContent = (children: ReactNode) => {
       return;
     }
 
-    setCurrentStep(currentStep + 1);
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const handlePrevious = (): void => {
+    setCurrentStep(currentStep - 1);
   };
 
   return {
@@ -45,6 +51,6 @@ export const useStepContent = (children: ReactNode) => {
     stepErrors,
     steps,
     handleNext,
-    validateStep,
+    handlePrevious,
   };
 };
